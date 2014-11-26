@@ -3,19 +3,23 @@
 	
 +Site Map
 ![sitemap](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/sitemap.png)
-Use Case Diagram
+
++Case Diagram
 ![casediagram](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/casediagram.png)
 
++Wireframes
+![wireframe1](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/wireframe1.png)
+![wireframe2](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/wireframe2.png)
 
 +Module/Research
-+-	MVC	
-+-	CSS preprocesser (sass, less, myth)
-+-	use of JSHint
-+-	User authentication
-+-	client side form validation
-+-	CSS framework (not just bootstrap, foundation)
-+-	Visual effects
-+-	client side templating
+	-MVC	
+	-CSS preprocesser (sass, less, myth)
+	-use of JSHint
+	-User authentication
+	-client side form validation
+	-CSS framework (not just bootstrap, foundation)
+	-Visual effects
+	-client side templating
 
 what is it?, theoretical underpinnings worth mentioning
 why use it? possible modules/solutions
