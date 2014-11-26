@@ -12,13 +12,21 @@
 ![wireframe2](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/wireframe2.png)
 
 +Module/Research
+
 	-MVC	
+
 	-CSS preprocesser (sass, less, myth)
+
 	-use of JSHint
+
 	-User authentication
+
 	-client side form validation
+
 	-CSS framework (not just bootstrap, foundation)
+
 	-Visual effects
+
 	-client side templating
 
 what is it?, theoretical underpinnings worth mentioning
