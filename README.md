@@ -1,19 +1,22 @@
-##DNA imaging
-
+DNA imaging
+===========
 	Takes text files that convert the string of DNA into a visual colored version of DNA. It will allow each user to login and pull up all the DNAs they have saved. Each DNA strand can be labeled and can find the number of times a specific sequence of DNA is found on that particular DNA.
 	
-##Site Map
+Site Map
+--------
 ![sitemap](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/sitemap.png)
 
-##Case Diagram
+Case Diagram
+------------
 ![casediagram](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/casediagram.png)
 
-##Wireframes
+Wireframes
+----------
 ![wireframe1](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/wireframe1.png)
 ![wireframe2](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/wireframe2.png)
 
-##Module/Research
-
+Module/Research
+---------------
 	-MVC	
 		: separates logic from rest of user face, made up of model, view and controller. The model will handle the data in the app with access to the database, the view will render the info on the screen and controller sends commands to model to update its state, etc.
 	-CSS preprocesser (sass, less, myth)
