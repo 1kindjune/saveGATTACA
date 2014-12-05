@@ -18,7 +18,6 @@ var User = new mongoose.Schema({
 
 User.plugin(URLSlugs('userName'));
 
-
 mongoose.model('User', User);
 mongoose.model('DNA', DNA);
 

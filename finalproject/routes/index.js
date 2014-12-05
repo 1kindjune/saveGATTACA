@@ -6,7 +6,6 @@ var User = mongoose.model('User');
 var DNA = mongoose.model('DNA');
 
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
 //	res.redirect('/login');
@@ -42,8 +41,23 @@ router.post('/login', function(req, res){
 });
 
 //REGISTER
-router.get('/login/register', function(req, res){
-	res.redirect('/register');
+router.get('/register', function(req, res){
+	res.render('register');
+});
+router.post('/account', function(req, res){
+	new User({
+		userName: req.body.userName,
+		passWord: req.body.passWord,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		//hidden
+		dnaStrands: [],
+		slug: req.body.slug
+	}).save(function(err, newUser){
+		//move to the new user site
+		res.redirect("/login");
+		//res.redirect('/user/' + newUser.slug);
+	});
 });
 
 //ACCOUNT
