@@ -46,15 +46,15 @@ router.get('/login/register', function(req, res){
 	res.redirect('/register');
 });
 
-//USER
+//ACCOUNT
 
-//USER - SLUG
+//ACCOUNT - USER
 
-//USER - SLUG - ADD DNA
+//ACCOUNT - USER - ADD DNA
 
-//USER - SLUG - FIND SEQUENCE
+//ACCOUNT - USER - DNA INFO
 
-//
+//ACCOUNT - USER - FIND SEQUENCE
 
 
 module.exports = router;
