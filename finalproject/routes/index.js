@@ -93,8 +93,9 @@ router.post("/add", function(req, res){
 					//hidden
 					slug: req.body.dnaName
 		});
-		dbUser.save();
-		res.redirect('/account/' + dbUser.slug);
+		dbUser.save(function(err){
+			res.redirect('/account/' + dbUser.slug);
+		});
 	});
 });
 
@@ -120,7 +121,7 @@ router.get("/dna/:slug", function(req, res){
 		res.render('dna',{
 			dnaName: foundDna.dnaName,
 			dnaSeq: foundDna.dnaSeq,
-			slug: foundDna.slug
+			userSlug: dbUser.slug
 		});
 	});
 });
