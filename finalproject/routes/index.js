@@ -11,9 +11,9 @@ var DNA = mongoose.model('DNA');
 router.get('/', function(req, res) {
 //	res.redirect('/login');
   res.render('index', { title: 'Imagine your DNA~' });
-  setTimeout(function(){ //wait abit before moving to login page
+//  setTimeout(function(){ //wait abit before moving to login page
   	res.redirect('/login');
-  }, 1000);
+//  }, 1000);
 });
 
 //LOGIN
