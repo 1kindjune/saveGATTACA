@@ -1,17 +1,21 @@
-<div class = "login">
-<div class = "form">
-<h3>Login </h3>
+<h3>Login</h3>
 
-<form method = "POST" action = "">
+<form class = "form-container" method = "POST" action = "">
+<div class="form-title"><h2>Login</h2></div>
 
-Username
-<input type = "text" name = "userName" placeholder= "Username">
-Password
-<input type = "password" name = "passWord" id = "pass_word" placeholder = "Password">
-<input type = "submit" class = "button" value = "login">
+<div class="form-title">Username</div>
+<input class = "form-field" type = "text" name = "userName" /><br />
+
+<div class="form-title">Password</div>
+<input class = "form-field" type = "password" name = "passWord" /><br />
+
+<div class="submit-container">
+<input class = "btn" type = "submit" value = "Submit" />
 <!--comment: value is optionally set to default value fo field to handle this data from req. body you need body-parser-->
+</div>
+
 </form>
+</div></div>
 
 <div class = "register">
 <a href = "/../register">Register</a>
-</div></div>
