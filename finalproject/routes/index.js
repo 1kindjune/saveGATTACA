@@ -9,11 +9,10 @@ loggedUser = "";
 
 /* GET home page. */
 router.get('/', function(req, res) {
-//	res.redirect('/login');
-  //res.render('index', { title: 'Imagine your DNA~' });
+  res.render('index', { title: 'Imagine your DNA~' });
   //setTimeout(function(){ //wait abit before moving to login page
-  	res.redirect('/login');
-  //}, 1000);
+ // 	res.redirect('/login');
+  //}, 1000); placed back into login
 });
 
 //LOGIN
@@ -26,17 +25,20 @@ router.post('/login', function(req, res){
 		if (dbUser == null){
 			//user doesnt exist
 			//maybe bring up popup that will ask to register or relogin?
-			res.redirect("/login");
+			res.render("login", {
+				noUser: true
+			});
 		}
 		else if (req.body.passWord == dbUser.passWord){
 			//user exists and password is correct
-
 			loggedUser = dbUser.userName; //only log in if correct password
 			res.redirect(("/account/" + dbUser.userName));
 		}
 		else{ 
 			//maybe bring up popup that will say incorrect password, register, relogin?
-			res.redirect("/login");
+			res.render("login",{
+				wrongPass: true
+			});
 		}
 	});
 	

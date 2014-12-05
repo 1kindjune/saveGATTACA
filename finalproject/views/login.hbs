@@ -1,11 +1,11 @@
-<form class = "form-container" method = "POST" action = "">
+<form class = "form-container" method = "POST" action = "" onsubmit = "return validateForm();">
 <div class="form-title"><h2>Login</h2></div>
 
 <div class="form-title">Username</div>
-<input class = "form-field" type = "text" name = "userName" /><br />
+<input class = "form-field" type = "text" name = "userName" id = "user_name" required /><br />
 
 <div class="form-title">Password</div>
-<input class = "form-field" type = "password" name = "passWord" /><br />
+<input class = "form-field" type = "password" name = "passWord" id = "pass_word" required /><br />
 
 <div class="submit-container">
 <input class = "btn" type = "submit" value = "Submit" />
@@ -19,3 +19,44 @@
 
 <div class = "register">
 <a href = "/../register">Register</a>
+
+
+<script>
+{{#if noUser}}
+	alert("User does not exist!");
+{{/if}}
+{{#if wrongPass}}
+	alert("Wrong Password!");
+{{/if}}
+</script>
+
+
+<!-- attempt at client side form validation by connecting to db. useless...
+<script>
+function validUsername(){
+	var user = document.getElementById("user+name");
+	if (User.findOne())
+}
+function validUsername(){
+	var pass = document.getElementById("user+name");
+}
+function validateForm(){
+	var error_message = "";
+	error_message  += validUsername();
+	if (validUsername() !== null){
+		error_message  += validPassword();
+	}
+
+	if (error_message != ""){
+		return true;
+	}
+	alert("Invalid entry: \n" + error_message);
+	return false;
+}
+
+</script>
+-->
+
+
+
+
