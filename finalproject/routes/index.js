@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User');
-var DNA = mongoose.model('DNA');
+//var DNA = mongoose.model('DNA');
 
 loggedUser = "";
 
@@ -32,7 +32,6 @@ router.post('/login', function(req, res){
 			//user exists and password is correct
 
 			loggedUser = dbUser.userName; //only log in if correct password
-			loggedUserSlug = dbUser.slug; //????slug?
 			res.redirect(("/account/" + dbUser.userName));
 		}
 		else{ 
@@ -88,21 +87,19 @@ router.get("/add", function(req, res){
 });
 router.post("/add", function(req, res){
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
-		newDna = new DNA({
+		dbUser.dnaStrands.push({
 					dnaName: req.body.dnaName,
 					dnaSeq: req.body.dnaSeq,
 					//hidden
-					slug: req.body.slug
+					slug: req.body.dnaName
 		});
-		dbUser.dnaStrands.push(newDna);
 		dbUser.save();
-		//does this work? pushing sub documents into mongoose array?
 		res.redirect('/account/' + dbUser.slug);
 	});
 });
 
 //ACCOUNT - USER - DNA INFO
-router.get("/dna/:slug", function(res, req){
+router.get("/dna/:slug", function(req, res){
 //	var dna = req.params.slug;
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		var x = ""; //makesure that this value changes after the for loop
