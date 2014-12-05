@@ -4,6 +4,7 @@ var mongoose = require('mongoose'), URLSlugs = require('mongoose-url-slugs');
 
 var DNA = new mongoose.Schema({
 	dnaName: String,
+	dnaSeq: String,
 	slug: String
 });
 
@@ -17,6 +18,7 @@ var User = new mongoose.Schema({
 });
 
 User.plugin(URLSlugs('userName'));
+DNA.plugin(URLSlugs('dnaName'));
 
 mongoose.model('User', User);
 mongoose.model('DNA', DNA);

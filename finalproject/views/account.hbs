@@ -1,6 +1,16 @@
-<div class = "account">
-<h3>User Account</h3> 
+<!-- <div class = "account"> -->
+<h3>Hello {{firstName}}!!!</h3> 
+	<br />
+	<!-- ul is unordered list bullet points, ol ordered list numbered -->
+	<ul>
+		{{#each dnaStrands}}
+			<li>
+				<a href = /../dna/{{slug}}>{{dnaName}}</a>
+			</li>
+		{{/each}}
+	</ul>
 
-
+	<br />
+	<a href = "/../add">Add new DNA</a>
 
 </div>
