@@ -44,7 +44,7 @@ router.post('/login', function(req, res){
 router.get('/register', function(req, res){
 	res.render('register');
 });
-router.post('/account', function(req, res){
+router.post('/register', function(req, res){
 	new User({
 		userName: req.body.userName,
 		passWord: req.body.passWord,
@@ -53,7 +53,7 @@ router.post('/account', function(req, res){
 		//hidden
 		dnaStrands: [],
 		slug: req.body.slug
-	}).save(function(err, newUser){
+	}).save(function(err, newUser, count){
 		//move to the new user site
 		res.redirect("/login");
 		//res.redirect('/user/' + newUser.slug);
