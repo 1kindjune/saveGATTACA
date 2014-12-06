@@ -68,7 +68,8 @@ router.post('/register', function(req, res){
 
 //ACCOUNT - USER
 router.get("/account/:slug", function(req, res){
-//	var user = req.params.slug;
+	console.log("inside account/user");
+
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		res.render('account',{
 			firstName: dbUser.firstName,
@@ -77,8 +78,45 @@ router.get("/account/:slug", function(req, res){
 		});
 	});
 });
-router.post('/account/', function(req, res){
+router.post('/account/:slug', function(req, res){
+	console.log("inside account POST!");
+	//checkboxes
+	/*attempt at check boxes
+	var stuffChecked = req.body.stuffChecked;
+	if (stuffChecked !== undefined){ //not empty
+		var stuffCheckedArr = ("" + req.body.stuffChecked).split(",");
 
+		User.findOne({userName: loggedUser}, function(err, dbUser, count){
+			for(var x = 0; x < dbUser.dnaSeq.length; x++){
+				for(var y = 0; y < stuffCheckedArr.length; y++){
+					if(dbUser.dnaSeq[x].dnaName == stuffCheckedArr[y]){
+						dbUser.dnaSeq[x].notChecked = false;
+						dbUser.save();
+					}
+				}
+			}
+		});
+	}*/
+	User.findOne({userName: loggedUser}, function(err, dbUser, count){
+		res.render('account',{
+			firstName: dbUser.firstName,
+			dnaStrands: dbUser.dnaStrands,
+			slug: dbUser.slug
+		});
+		console.log("Inside findOne!");
+		for(var x = 0; x < dbUser.dnaSeq.length; x++){
+			if(document.getElementById(dbUser.dnaSeq[x].dnaName).checked == true){
+				//dbUser.dnaSeq[x].notChecked = false;
+				//dbUser.save();
+				//console.log("the document.getElementById: " + dbUser.dnaSeq[x].dnaName + " is checked.");
+				//console.log("that dna is now: " + dbUser.dnaSeq[x].notChecked);
+				dbUser.dnaSeq.splice(x, 1);
+			}
+		}
+	});
+	dbUser.save(function(err){
+		res.redirect('/account/' + loggedUser);
+	});
 });
 
 //ACCOUNT - USER - ADD DNA
@@ -88,11 +126,13 @@ router.get("/add", function(req, res){
 	res.render("add");
 });
 router.post("/add", function(req, res){
+	console.log("inside add POST");
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		dbUser.dnaStrands.push({
 					dnaName: req.body.dnaName,
 					dnaSeq: req.body.dnaSeq,
 					//hidden
+					notChecked: true,
 					slug: req.body.dnaName
 		});
 		dbUser.save(function(err){

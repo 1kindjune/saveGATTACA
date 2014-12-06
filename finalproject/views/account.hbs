@@ -3,13 +3,19 @@
 	<!-- ul is unordered list bullet points, ol ordered list numbered -->
 	<ul>
 		{{#each dnaStrands}}
-			<li>
-				<a href = /../dna/{{slug}}>{{dnaName}}</a>
-			</li>
+			{{#if notChecked}}
+					<input type = "checkbox" id = "{{dnaName}}" value = "">
+					<a href = /../dna/{{slug}}>{{dnaName}}</a>
+					<br />
+					<br />
+			{{/if}}
+			<!--<input type = "hidden" name = "slug" value = "{{slug}}">-->
 		{{/each}}
 	</ul>
 
-	<br />
 	<a href = "/../add">Add new DNA</a>
+	<br />
+	<br />
+	<input class = "btn" type = "submit" value = "Delete Checked Items" />
 
 </div>

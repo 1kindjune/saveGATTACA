@@ -18,6 +18,7 @@ var User = new mongoose.Schema({
 	dnaStrands: [{
 		dnaName: String,
 		dnaSeq: String,
+		notChecked: Boolean,
 		slug: String
 	}],
 	slug: String
