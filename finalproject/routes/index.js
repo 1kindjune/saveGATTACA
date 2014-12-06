@@ -3,16 +3,12 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User');
-//var DNA = mongoose.model('DNA');
 
 loggedUser = "";
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Imagine your DNA~' });
-  //setTimeout(function(){ //wait abit before moving to login page
- // 	res.redirect('/login');
-  //}, 1000); placed back into login
 });
 
 //LOGIN
@@ -59,7 +55,6 @@ router.post('/register', function(req, res){
 		slug: req.body.slug
 	}).save(function(err, newUser, count){
 		//move to the new user site
-		//res.redirect("/login");
 		loggedUser = newUser.userName; //new user is logged in
 		res.redirect('/account/' + newUser.slug);
 	});
@@ -80,29 +75,8 @@ router.get("/account/:slug", function(req, res){
 });
 router.post('/account/:slug', function(req, res){
 	console.log("inside account POST!");
-	//checkboxes
-	/*attempt at check boxes
-	var stuffChecked = req.body.stuffChecked;
-	if (stuffChecked !== undefined){ //not empty
-		var stuffCheckedArr = ("" + req.body.stuffChecked).split(",");
-
-		User.findOne({userName: loggedUser}, function(err, dbUser, count){
-			for(var x = 0; x < dbUser.dnaSeq.length; x++){
-				for(var y = 0; y < stuffCheckedArr.length; y++){
-					if(dbUser.dnaSeq[x].dnaName == stuffCheckedArr[y]){
-						dbUser.dnaSeq[x].notChecked = false;
-						dbUser.save();
-					}
-				}
-			}
-		});
-	}*/
+//attempt at checkboxes
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
-		res.render('account',{
-			firstName: dbUser.firstName,
-			dnaStrands: dbUser.dnaStrands,
-			slug: dbUser.slug
-		});
 		console.log("Inside findOne!");
 		for(var x = 0; x < dbUser.dnaSeq.length; x++){
 			if(document.getElementById(dbUser.dnaSeq[x].dnaName).checked == true){
@@ -120,7 +94,6 @@ router.post('/account/:slug', function(req, res){
 });
 
 //ACCOUNT - USER - ADD DNA
-//how to transfer information about account to add slugs?
 //make sure that the dna dont have the same name as a prior one!
 router.get("/add", function(req, res){
 	res.render("add");
@@ -149,17 +122,9 @@ router.get("/dna/:slug", function(req, res){
 		for (x = 0; x < dbUser.dnaStrands.length; x++){
 			if (dbUser.dnaStrands[x].dnaName == req.params.slug){
 				var foundDna = dbUser.dnaStrands[x];
-				//can variables hold schema?
 				break;
 			}
 		}
-		/* OR
-		res.render('dna', {
-			dnaName: dbUser.dnaStrands[x].dnaName,
-			dnaSeq: dbUser.dnaStrands[x].dnaSeq,
-			slug: dbUser.dnaStrands[x].slug
-		});
-		*/
 		res.render('dna',{
 			dnaName: foundDna.dnaName,
 			dnaSeq: foundDna.dnaSeq,
