@@ -1,10 +1,12 @@
 <!-- <div class = "account"> -->
-<h3>Hello {{firstName}}!!!</h3> 
-	<!-- ul is unordered list bullet points, ol ordered list numbered -->
+
+<form method = "POST" action = "">
+<div class="form-title"><h2>Hello {{firstName}}!!!</h2></div>
+
 	<ul>
 		{{#each dnaStrands}}
 			{{#if notChecked}}
-					<input type = "checkbox" id = "{{dnaName}}" value = "">
+					<input type = "checkbox" id = "{{dnaName}}" checked =  value = "not checked">
 					<a href = /../dna/{{slug}}>{{dnaName}}</a>
 					<br />
 					<br />
@@ -16,6 +18,19 @@
 	<a href = "/../add">Add new DNA</a>
 	<br />
 	<br />
-	<input type = "submit" class = "btn"  value = "Delete Checked Items" />
+	<input type = "submit" class = "btn" value = "Delete Checked Items" />
 
 </div>
+
+
+{{#each dnaStrands}}
+	<script>
+		if(document.getElementById({{dnaName}}).checked == "checked"){
+			console.log("inside script of account");
+			document.getElementById({{dnaName}}).value = "checked";
+		}
+	</script>
+{{/each}}
+
+
+</form>

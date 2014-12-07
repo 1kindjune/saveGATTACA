@@ -75,21 +75,26 @@ router.get("/account/:slug", function(req, res){
 });
 router.post('/account/:slug', function(req, res){
 	console.log("inside account POST!");
-//attempt at checkboxes
+	var stuffChecked = req.body.stuffChecked;
+	
+	console.log( "Stuff checked items" + stuffChecked);
+
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		console.log("Inside findOne!");
-		for(var x = 0; x < dbUser.dnaSeq.length; x++){
-			if(document.getElementById(dbUser.dnaSeq[x].dnaName).checked == true){
-				//dbUser.dnaSeq[x].notChecked = false;
-				//dbUser.save();
-				//console.log("the document.getElementById: " + dbUser.dnaSeq[x].dnaName + " is checked.");
-				//console.log("that dna is now: " + dbUser.dnaSeq[x].notChecked);
-				dbUser.dnaSeq.splice(x, 1);
-			}
+		
+		for(var x = 0; x < dbUser.dnaStrands.length; x++){
+			var curItem = dbUser.dnaStrands[x].dnaName;
+			console.log("what is in the current item: " + curItem);
+			console.log("what value is at this id: "  + req.body.curItem);
+			//for(var y = 0; y < )
+				//if(dbUser.dnaStrands[x].dnaName == true){
+				//	dbUser.dnaStrands.splice(x, 1);
+				//}
+			//}	
 		}
-	});
-	dbUser.save(function(err){
-		res.redirect('/account/' + loggedUser);
+		dbUser.save(function(err){
+			res.redirect('/account/' + loggedUser);
+		});
 	});
 });
 
