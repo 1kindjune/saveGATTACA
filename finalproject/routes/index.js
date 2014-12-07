@@ -66,6 +66,7 @@ router.get("/account/:slug", function(req, res){
 	console.log("inside account/user");
 
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
+		
 		res.render('account',{
 			firstName: dbUser.firstName,
 			dnaStrands: dbUser.dnaStrands,
@@ -76,13 +77,13 @@ router.get("/account/:slug", function(req, res){
 router.post('/account/:slug', function(req, res){
 	console.log("inside account POST!");
 	var stuffChecked = req.body.stuffChecked;
-	
-	console.log( "Stuff checked items" + stuffChecked);
+
+	console.log( "Stuff checked items: " + stuffChecked);
 
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		console.log("Inside findOne!");
 		
-		for(var x = 0; x < dbUser.dnaStrands.length; x++){
+		for(var x = 0; x < dbUser.stuffChecked.length; x++){
 			var curItem = dbUser.dnaStrands[x].dnaName;
 			console.log("what is in the current item: " + curItem);
 			console.log("what value is at this id: "  + req.body.curItem);
@@ -133,6 +134,7 @@ router.get("/dna/:slug", function(req, res){
 		res.render('dna',{
 			dnaName: foundDna.dnaName,
 			dnaSeq: foundDna.dnaSeq,
+			lenCanvas: ((foundDna.dnaSeq.length) * 80),
 			userSlug: dbUser.slug
 		});
 	});

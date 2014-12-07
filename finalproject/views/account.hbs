@@ -1,12 +1,14 @@
 <!-- <div class = "account"> -->
 
-<form method = "POST" action = "">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<form id = "formId" method = "POST" action = "">
 <div class="form-title"><h2>Hello {{firstName}}!!!</h2></div>
 
 	<ul>
 		{{#each dnaStrands}}
 			{{#if notChecked}}
-					<input type = "checkbox" id = "{{dnaName}}" checked =  value = "not checked">
+					<input type = "checkbox" id = "{{dnaName}}" value = "{{{dnaName}}}">
 					<a href = /../dna/{{slug}}>{{dnaName}}</a>
 					<br />
 					<br />
@@ -22,15 +24,34 @@
 
 </div>
 
-
-{{#each dnaStrands}}
-	<script>
-		if(document.getElementById({{dnaName}}).checked == "checked"){
-			console.log("inside script of account");
-			document.getElementById({{dnaName}}).value = "checked";
-		}
-	</script>
-{{/each}}
-
-
 </form>
+
+
+
+<script>
+$("#formId").submit(function(){
+	$("input[type=checkbox][checked]").each(function() { 
+		alert("hello!!!");
+		alert("name" + this);
+    	$(this).attr("name", "stuffChecked");
+    });    
+});
+</script>
+
+
+<!--
+<script>
+	dnaStrandsArr = {{{dnaStrands}}}.split(,);
+	console.log("strands array: " + dnaStrandsArr);
+	for (var x = 0; x < {{dnaStrands}}.length; x ++){
+		console.log("this is the dna Name: " + ({{dnaStrands}}[x].{{dnaName}}).id);
+		if(document.getElementById(({{dnaName}}).id).checked == true){
+			console.log("inside script of account");
+			document.getElementById(({{dnaName}}).id).name = "stuffChecked";
+		}
+		console.log(document.getElementById(({{dnaName}}).id).checked);
+
+	}
+</script>
+-->
+

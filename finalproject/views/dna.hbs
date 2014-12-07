@@ -1,17 +1,22 @@
 <!-- <div class = "dna"> -->
 <h3>{{dnaName}} Information</h3> 
-	<ul>
-		DNA sequence is : {{dnaSeq}}
-		<input type="hidden" id="seq" value = "{{dnaSeq}}">
-	</ul>
-	<!-- adjust height of canvas by lenth of sequence + 1 -->
-	<canvas id = "sketch" width = "500" height = "500">
-	</canvas>
 
-	<script src = "/javascripts/dna.js"> </script>
+DNA sequence is : {{dnaSeq}}
+<input type="hidden" id="seq" value = "{{dnaSeq}}">
+
+<br />
+<br />
+
+<!-- adjust height of canvas by lenth of sequence + 1 -->
+<canvas id = "sketch" width = "350" height = "{{lenCanvas}}">
+</canvas>
+
+<script src = "/javascripts/dna.js"> </script>
 	
 
-	<br />
+<br />
+<br />
+
 
 <input type="button" class = "btn" value="Back to List" onClick="history.go(-1);">
 	

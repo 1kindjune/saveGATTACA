@@ -1,9 +1,18 @@
 <h1></h1>
 <p>{{title}}</p>
 
-
-<script> //client side
-	setTimeout(function(){ //wait abit before moving to login page 	
-  		window.location.replace("http://localhost:3000/login");
-  	}, 1000);
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+<script>
+//	$(document).ready(function() {
+//   		alert('hi');
+//	});
+    $(document).ready(function() {
+        $("body").css("display", "none");
+        $("body").fadeIn(5000);
+    });
+    setTimeout(function(){
+		$('body').fadeOut(5000, function(){
+			window.location = ("http://localhost:3000/login");
+		});
+	}, 3000);
 </script>
