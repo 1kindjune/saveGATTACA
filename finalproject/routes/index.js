@@ -134,7 +134,7 @@ router.get("/dna/:slug", function(req, res){
 		res.render('dna',{
 			dnaName: foundDna.dnaName,
 			dnaSeq: foundDna.dnaSeq,
-			lenCanvas: ((foundDna.dnaSeq.length) * 80),
+			lenCanvas: ((foundDna.dnaSeq.length + 4) * 80),
 			userSlug: dbUser.slug
 		});
 	});

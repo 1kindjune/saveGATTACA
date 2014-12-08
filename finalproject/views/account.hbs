@@ -8,7 +8,7 @@
 	<ul>
 		{{#each dnaStrands}}
 			{{#if notChecked}}
-					<input type = "checkbox" id = "{{dnaName}}" value = "{{{dnaName}}}">
+					<input type = "checkbox" id = "{{dnaName}}" name = "{{dnaName}}" value = "not checked">
 					<a href = /../dna/{{slug}}>{{dnaName}}</a>
 					<br />
 					<br />
@@ -47,7 +47,7 @@ $("#formId").submit(function(){
 		console.log("this is the dna Name: " + ({{dnaStrands}}[x].{{dnaName}}).id);
 		if(document.getElementById(({{dnaName}}).id).checked == true){
 			console.log("inside script of account");
-			document.getElementById(({{dnaName}}).id).name = "stuffChecked";
+			document.getElementById(({{dnaName}}).id).value = "Checked";
 		}
 		console.log(document.getElementById(({{dnaName}}).id).checked);
 
