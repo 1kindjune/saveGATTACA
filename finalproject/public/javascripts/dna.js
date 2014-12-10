@@ -113,7 +113,9 @@ function main(){
 //function animate(){
 
 //BACKGROUND
-	document.getElementById("sketch").style.background = "grey";
+	context.fillStyle = "grey";
+	context.fillRect(0, 0, sketch.width-50, sketch.height);	
+	//document.getElementById("sketch").style.background = "grey";
 
 //BACKBONE - BEHIND
 	var backboneColor;
@@ -168,9 +170,17 @@ function main(){
 	//true is right, false is left	
 	var num1 = [50, -50 + 160, true]; 
 	var num2 = [350, -50 + 160, false]; 
+	var letterPos = [425, 200];
 	var center = 200;	
 	var previous;
 	for (var x = 0; x < seq.length; x++){
+		//DNA SEQUENCE LETTERS
+		context.fillStyle = "black";
+		context.font = "bold 20pt Arial";
+		context.fillText(seq.charAt(x).toUpperCase(), letterPos[0], letterPos[1]);
+		letterPos = [letterPos[0], letterPos[1] + 80];
+
+		//NUCLEOTIDES
 		if (num1[0] < num2[0]){ //1 is on the left
 			num2 = drawNuc2(seq.charAt(x).toUpperCase(), num2[0], num2[1], num2[2], center, sketch, context);
 			num1 = drawNuc1(seq.charAt(x).toUpperCase(), num1[0], num1[1], num1[2], center, sketch, context);	
@@ -233,18 +243,25 @@ function main(){
 			pos = [pos[0] - 50, pos[1] + 80];
 		}
 	}
+
+
+//BOTTOM BACKGROUND
+	context.fillStyle = "grey";
+	context.fillRect(0, (sketch.height - 150), sketch.width - 50, 150);	
+
 //BACKGROUND GRADIENT	
 	var grd = context.createLinearGradient(0, 0, 0, 160);
 	grd.addColorStop(0, 'white'); 
-	grd.addColorStop(1, 'grey');
+	grd.addColorStop(1, 'transparent');
 	context.fillStyle = grd;
-	context.fillRect(0, 0, sketch.width, 160);
+	context.fillRect(0, 0, sketch.width - 50, 160);
 
-	grd = context.createLinearGradient(0, (sketch.height - 160), 0, sketch.height);
-	grd.addColorStop(0, 'grey'); 
+	grd = context.createLinearGradient(0, (sketch.height - 180), 0, sketch.height);
+	grd.addColorStop(0, 'transparent'); 
 	grd.addColorStop(1, 'white');
 	context.fillStyle = grd;
-	context.fillRect(0, (sketch.height - 160), sketch.width, 160);	
+	context.fillRect(0, (sketch.height - 180), sketch.width - 50, 180);	
+
 }
 document.addEventListener('DOMContentLoaded', main);
 

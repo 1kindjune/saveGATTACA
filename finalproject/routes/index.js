@@ -74,29 +74,41 @@ router.get("/account/:slug", function(req, res){
 		});
 	});
 });
-router.post('/account/:slug', function(req, res){
+router.post('/account/', function(req, res){
 	console.log("inside account POST!");
 	var stuffChecked = req.body.stuffChecked;
 
-	console.log( "Stuff checked items: " + stuffChecked);
-
-	User.findOne({userName: loggedUser}, function(err, dbUser, count){
-		console.log("Inside findOne!");
-		
-		for(var x = 0; x < dbUser.stuffChecked.length; x++){
-			var curItem = dbUser.dnaStrands[x].dnaName;
-			console.log("what is in the current item: " + curItem);
-			console.log("what value is at this id: "  + req.body.curItem);
-			//for(var y = 0; y < )
-				//if(dbUser.dnaStrands[x].dnaName == true){
-				//	dbUser.dnaStrands.splice(x, 1);
-				//}
-			//}	
+	if(stuffChecked !== undefined){
+		if (stuffChecked.length ==1){
+			stuffChecked = req.body.name;
 		}
-		dbUser.save(function(err){
-			res.redirect('/account/' + loggedUser);
+		stuffChecked = ("" + req.body.stuffChecked).split(",");
+		console.log("stuffChecked from hbs: " + stuffChecked);
+
+		User.findOne({userName: loggedUser}, function(err, dbUser, count){
+			console.log("Inside findOne!");
+			var curItem;
+			console.log("stuffChecked.length : " + stuffChecked.length);
+			for(var x = 0; x < stuffChecked.length; x++){
+				curItem = stuffChecked[x];
+				if(dbUser.dnaStrands.length === null){
+					break;
+				}
+				for(var y = 0; y < dbUser.dnaStrands.length; y++){
+					console.log( "curItem: " + curItem +  "~~~~~~"+ "db compare: " + dbUser.dnaStrands[y].dnaName);
+					if(dbUser.dnaStrands[y].dnaName == curItem){
+						console.log( "matches");
+						dbUser.dnaStrands.splice(y, 1);
+						dbUser.save();
+					}
+				}	
+			}
+			dbUser.save(function(err){
+				res.redirect('/account/' + dbUser.slug);
+			});
 		});
-	});
+	//do nothing since nothing was checked
+	}
 });
 
 //ACCOUNT - USER - ADD DNA
