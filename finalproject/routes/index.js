@@ -17,7 +17,6 @@ router.get('/login', function(req, res){
 });
 router.post('/login', function(req, res){
 	User.findOne({userName: req.body.userName}, function(err, dbUser, count){
-		console.log("The data base user is: " + dbUser);
 		if (dbUser == null){
 			//user doesnt exist
 			//maybe bring up popup that will ask to register or relogin?
@@ -63,7 +62,6 @@ router.post('/register', function(req, res){
 
 //ACCOUNT - USER
 router.get("/account/:slug", function(req, res){
-	console.log("inside account/user");
 
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		
@@ -75,7 +73,6 @@ router.get("/account/:slug", function(req, res){
 	});
 });
 router.post('/account/', function(req, res){
-	console.log("inside account POST!");
 	var stuffChecked = req.body.stuffChecked;
 
 	if(stuffChecked !== undefined){
@@ -83,23 +80,18 @@ router.post('/account/', function(req, res){
 			stuffChecked = req.body.name;
 		}
 		stuffChecked = ("" + req.body.stuffChecked).split(",");
-		console.log("stuffChecked from hbs: " + stuffChecked);
 
 		User.findOne({userName: loggedUser}, function(err, dbUser, count){
-			console.log("Inside findOne!");
 			var curItem;
-			console.log("stuffChecked.length : " + stuffChecked.length);
 			for(var x = 0; x < stuffChecked.length; x++){
 				curItem = stuffChecked[x];
-				if(dbUser.dnaStrands.length === null){
+				if(dbUser.dnaStrands.length === null){ //empty
 					break;
 				}
 				for(var y = 0; y < dbUser.dnaStrands.length; y++){
-					console.log( "curItem: " + curItem +  "~~~~~~"+ "db compare: " + dbUser.dnaStrands[y].dnaName);
 					if(dbUser.dnaStrands[y].dnaName == curItem){
-						console.log( "matches");
 						dbUser.dnaStrands.splice(y, 1);
-						dbUser.save();
+						dbUser.save(); //do i need this???
 					}
 				}	
 			}
@@ -117,13 +109,10 @@ router.get("/add", function(req, res){
 	res.render("add");
 });
 router.post("/add", function(req, res){
-	console.log("inside add POST");
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		dbUser.dnaStrands.push({
 					dnaName: req.body.dnaName,
 					dnaSeq: req.body.dnaSeq,
-					//hidden
-					notChecked: true,
 					slug: req.body.dnaName
 		});
 		dbUser.save(function(err){
