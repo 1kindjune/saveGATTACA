@@ -1,8 +1,8 @@
-{{#if found}}
+//{{#if found}}
 	//hide the form and put number of occurences
-{{else}}
+//{{else}}
 	//show the form	
-{{/if}}
+//{{/if}}
 ////////
 
 function drawNuc1(nuc, x, y, dir, center, sketch, context){
