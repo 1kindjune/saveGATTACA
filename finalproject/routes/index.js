@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+//crypt
 var bcrypt = require('bcrypt');
 
+//
 var User = mongoose.model('User');
 
 loggedUser = "";
@@ -26,8 +28,7 @@ router.post('/login', function(req, res){
 				noUser: true
 			});
 		}
-		//else if (bcrypt.compareSync(req.body.passWord, dbUser.passWord)){ //should return true
-		else if(req.body.passWord == dbUser.passWord){
+		else if (req.body.passWord == dbUser.passWord){
 			//user exists and password is correct
 			loggedUser = dbUser.userName; //only log in if correct password
 			res.redirect(("/account/" + dbUser.userName));
@@ -48,13 +49,8 @@ router.get('/register', function(req, res){
 	res.render('register');
 });
 router.post('/register', function(req, res){
-	var salt = bcrypt.genSaltSync(10);
-	var hash = bcrypt.hashSync(req.body.passWord, salt);
-
-	console.log("new User Name: " + req.body.userName);
 	new User({
 		userName: req.body.userName,
-		//passWord: hash,
 		passWord: req.body.passWord,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
@@ -63,8 +59,6 @@ router.post('/register', function(req, res){
 		slug: req.body.slug
 	}).save(function(err, newUser, count){
 		//move to the new user site
-		console.log("saving");
-		console.log("new User Name: " + newUser.userName);		
 		loggedUser = newUser.userName; //new user is logged in
 		res.redirect('/account/' + newUser.slug);
 	});
