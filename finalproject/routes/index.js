@@ -199,7 +199,24 @@ router.post("/dna/", function(req, res){
 	   occurrences++;
 	   a = seq.indexOf(findDna);
 	 }
-	res.redirect('/dna/' + req.body.dnaName);				
+
+	User.findOne({userName: loggedUser}, function(err, dbUser, count){
+		var x = ""; //makesure that this value changes after the for loop
+		for (x = 0; x < dbUser.dnaStrands.length; x++){
+			if (dbUser.dnaStrands[x].dnaName == req.body.dnaName){
+				var foundDna = dbUser.dnaStrands[x];
+				break;
+			}
+		}
+		res.render('dna',{
+			dnaName: foundDna.dnaName,
+			dnaSeq: foundDna.dnaSeq,
+			lenCanvas: ((foundDna.dnaSeq.length + 4) * 80),
+			userSlug: dbUser.slug,
+			found: true,
+			occur: occurrences
+		});
+	});			
 });
 
 module.exports = router;

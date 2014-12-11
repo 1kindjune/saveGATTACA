@@ -1,3 +1,10 @@
+{{#if found}}
+	//hide the form and put number of occurences
+{{else}}
+	//show the form	
+{{/if}}
+////////
+
 function drawNuc1(nuc, x, y, dir, center, sketch, context){
 	var color = "#000";
 	switch (nuc) {
