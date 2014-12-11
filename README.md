@@ -18,15 +18,22 @@ Wireframes
 
 Demo
 ----
-Registration: 
-	Username = User
-	Password = hellow
-	First Name = June
-	Last Name = Won
-Add DNA:
-	DNA Name = PX-1
-	DNA Sequence = gattaca
-	
+- Registration: 
+
+Username = User
+
+Password = hellow
+
+First Name = June
+
+Last Name = Won
+
+- Add DNA:
+
+DNA Name = PX-1
+
+DNA Sequence = gattaca
+
 ![pic1](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/1.png)
 ![pic2](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/2.png)
 ![pic3](https://github.com/xsweetpea/2014-finalproject/blob/master/documentation/3.png)
@@ -39,7 +46,7 @@ Module/Research
 
 -CSS preprocesser (sass, less, myth) :It is a scripting language that extends css and it gets compied into regular css syntax. It has benefits such as simpler/cleaner code, more flexible, libraries, etc. 
 
--~~use of JSHint: It is a static code analysis tool used to check if the JS code compileswith coding rules. It will not try to run the code to check for syntax errors from running. It can enforce style guides and helps you to become more consistent/readable code. 
+-~~use of JSHint: It is a static code analysis tool used to check if the JS code compileswith coding rules. It will not try to run the code to check for syntax errors from running. It can enforce style guides and helps you to become more consistent/readable code. ~~~
 
 -~~User authentication: Checks whether the user is who that they declare to be using passwords as verification. Using this to allow user to bring up saved DNA they have created before.~~
 
@@ -47,6 +54,6 @@ Module/Research
 
 -CSS framework (not just bootstrap, foundation): It is a pre-pared software framework meant to allow for easier, more standards-compliant webdesign using CSS. Some benefits include that they provide code that you dont need to write from scratch over again and again, help cross browser problems, encourage grid based design, come with documentation.
 
--~~Visual effects: Visual effects like fading, blinking will help make the website overall more user friendly and visualy simulating.
+-~~Visual effects: Visual effects like fading, blinking will help make the website overall more user friendly and visualy simulating. ~~~
 
 -~~client side templating: It consists of removing the job of rendering on the back end and adding the job to the client using JS. This allows for faster web apps and more control. It is a greate way to separate markup and logic and maximizes code reusability.~~
