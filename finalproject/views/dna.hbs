@@ -1,8 +1,24 @@
 <!-- <div class = "dna"> -->
 <h3>{{dnaName}} Information</h3> 
 
+<form method = "POST" action = "">
+
 DNA sequence is : {{dnaSeq}}
-<input type="hidden" id="seq" value = "{{dnaSeq}}">
+
+<div class="form-title">DNA Sequence</div>
+<input class = "form-field" type = "text" name = "findDna" required/><br />
+
+<br />
+
+<div class="submit-container">
+<input class = "btn" type = "submit" value = "Find" />
+</div>
+
+</form>
+
+
+<input type="hidden" name = "dnaName" value = "{{dnaName}}">
+<input type="hidden" name = "seq" id="seq" value = "{{dnaSeq}}">
 
 <br />
 <br />

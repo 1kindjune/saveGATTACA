@@ -187,9 +187,31 @@ router.get("/dna/:slug", function(req, res){
 	});
 });
 
+router.post("/dna/", function(req, res){
+	var findDna = req.body.findDna;
+	var seq = req.body.seq;
+	var occurrences = 0;
 
-//ACCOUNT - USER - FIND SEQUENCE
+	var a = seq.indexOf(findDna);
 
-//figure out how to log out!
+	while(a!=-1){
+	   seq = seq.slice(a * 1 + findDna.length);
+	   occurrences++;
+	   a = seq.indexOf(findDna);
+	 }
+	res.redirect('/dna/' + req.body.dnaName);				
+});
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
