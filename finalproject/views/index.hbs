@@ -9,17 +9,15 @@
 
 
 <script>
-{{#if noFade}}
-	{{#if noUser}}
-		alert("User does not exist!");
-	{{/if}}
-	{{#if wrongPass}}
-		alert("Wrong Password!");
-	{{/if}}
-{{else}}
+//	$(document).ready(function() {
+//   		alert('hi');
+//	});
     $(document).ready(function() {
-    	$("body").css("display", "none");
-    	$("body").fadeIn(1500);
+        $("body").css("display", "none");
+        $("body").fadeIn(2000);
     });
-{{/if}}
-</script>
+    setTimeout(function(){
+		$('body').fadeOut(1500, function(){
+			window.location = ("http://localhost:3000/login");
+		});
+	}, 3000);</script>
