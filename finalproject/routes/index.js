@@ -1,13 +1,30 @@
 var express = require('express');
+
+//??
+// var session = require('express-session');
+// var app = express();
+// var sessionOptions = {
+// 	secret: 'secret cookie thangyasd10129jvnbjs3',
+// 	resave: true,
+// 	saveUninitialized: true
+// };
+// app.use(express.cookieParser());
+// app.use(session(sessionOptions));
+//??
+
 var router = express.Router();
 var mongoose = require('mongoose');
 //crypt
 var bcrypt = require('bcrypt');
 
-//
 var User = mongoose.model('User');
 
 loggedUser = "";
+
+
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -19,6 +36,7 @@ router.get('/login', function(req, res){
 	res.render('login', {title: "Login!"});
 });
 router.post('/login', function(req, res){
+	console.log(req.body.userName);
 	User.findOne({userName: req.body.userName}, function(err, dbUser, count){
 		if (dbUser === null){
 			//user doesnt exist
@@ -80,6 +98,12 @@ router.get("/account/:slug", function(req, res){
 router.post('/account/', function(req, res){
 	var stuffChecked = req.body.stuffChecked;
 
+	if(req.body.logOut == "logout"){
+		//req.session.destroy();
+		loggedUser = "";
+		res.render('login', {title: "Login!"});
+	}
+
 	if(stuffChecked !== undefined){
 		if (stuffChecked.length ==1){
 			stuffChecked = req.body.name;
@@ -124,7 +148,7 @@ router.post('/account/', function(req, res){
 router.get("/add", function(req, res){
 	res.render("add");
 });
-router.post("/add", function(req, res){
+router.post("/add", function(req, res){	
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		dbUser.dnaStrands.push({
 					dnaName: req.body.dnaName,
@@ -145,6 +169,7 @@ router.post("/add", function(req, res){
 //ACCOUNT - USER - DNA INFO
 router.get("/dna/:slug", function(req, res){
 //	var dna = req.params.slug;
+
 	User.findOne({userName: loggedUser}, function(err, dbUser, count){
 		var x = ""; //makesure that this value changes after the for loop
 		for (x = 0; x < dbUser.dnaStrands.length; x++){
