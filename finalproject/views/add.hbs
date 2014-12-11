@@ -7,19 +7,40 @@
 
 <div class="form-title"><h2>Add DNA</h2></div>
 
+<!--
+{{#if err.errors.dnaName}} 
+<div class="error">
+{{err.errors.dnaName.message}}
+</div>
+{{/if}}
+-->
+
 <div class="form-title">DNA Name</div>
 <input class = "form-field" type = "text" name = "dnaName" required/><br />
+
+<br />
+
+
+<!--
+{{#if err.errors.dnaSeq}} 
+<div class="error">
+{{err.errors.dnaSeq.message}}
+</div>
+{{/if}}
+-->
 
 <div class="form-title">DNA Sequence</div>
 <input class = "form-field" type = "text" name = "dnaSeq" /><br />
 
 <br/>
+
 or (text files currently not working)
 <br />
 
 <div class="form-title">DNA Sequence</div>
 <input class = "form-field" type = "file" accept = "text/plain" id = "dnaSeqFile" /><br />
 
+<br />
 
 <div class="submit-container">
 <input class = "btn" type = "submit" value = "Submit" />
@@ -29,6 +50,25 @@ or (text files currently not working)
 </div></div>
 
 
+
+
+
+
+
+
+<!-- TESTING -->
+
+<!-- run through all errors
+{{#if err}}
+<ul>
+{{#each err.errors}}
+<li>{{message}}</li>
+{{/each}}
+</ul>
+{{/if}}
+-->
+
+<!--DNA SEQUENCE CORRECTNESS
 <script>
 $( "form" ).submit(function( event ) {
   	var incorrectDNA = false;
@@ -48,8 +88,9 @@ $( "form" ).submit(function( event ) {
 	}
 });
 </script>
+-->
 
-<!--
+<!--READ TEXT FILE
 <script>
 function readFile(evt) {
    	var f = evt.target.files[0]; 

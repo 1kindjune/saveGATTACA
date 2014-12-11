@@ -1,13 +1,4 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
-<script>
-//	$(document).ready(function() {
-//   		alert('hi');
-//	});
-    $(document).ready(function() {
-        $("body").css("display", "none");
-        $("body").fadeIn(2000);
-    });
-</script>
 
 
 <form class = "form-container" method = "POST" action = "" onsubmit = "return validateForm();">
@@ -34,11 +25,38 @@
 
 
 <script>
-{{#if noUser}}
-	alert("User does not exist!");
-{{/if}}
-{{#if wrongPass}}
-	alert("Wrong Password!");
+{{#if noFade}}
+	{{#if noUser}}
+		alert("User does not exist!");
+	{{/if}}
+	{{#if wrongPass}}
+		alert("Wrong Password!");
+	{{/if}}
+{{else}}
+    $(document).ready(function() {
+    	$("body").css("display", "none");
+    	$("body").fadeIn(1500);
+    });
 {{/if}}
 </script>
+
+
+
+
+
+
+
+<!-- TESTING -->
+
+<!--
+<script>
+//	$(document).ready(function() {
+//   		alert('hi');
+//	});
+    $(document).ready(function() {
+        $("body").css("display", "none");
+        $("body").fadeIn(1500);
+    });
+</script>
+-->
 

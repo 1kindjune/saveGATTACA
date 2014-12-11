@@ -21,6 +21,7 @@ router.post('/login', function(req, res){
 			//user doesnt exist
 			//maybe bring up popup that will ask to register or relogin?
 			res.render("login", {
+				noFade: true,
 				noUser: true
 			});
 		}
@@ -32,6 +33,7 @@ router.post('/login', function(req, res){
 		else{ 
 			//maybe bring up popup that will say incorrect password, register, relogin?
 			res.render("login",{
+				noFade: true,
 				wrongPass: true
 			});
 		}
@@ -101,6 +103,17 @@ router.post('/account/', function(req, res){
 		});
 	//do nothing since nothing was checked
 	}
+	else{
+			User.findOne({userName: loggedUser}, function(err, dbUser, count){
+		
+			res.render('account',{
+				firstName: dbUser.firstName,
+				dnaStrands: dbUser.dnaStrands,
+				slug: dbUser.slug,
+				nothingDeleted: true
+		});
+	});
+	}
 });
 
 //ACCOUNT - USER - ADD DNA
@@ -115,8 +128,13 @@ router.post("/add", function(req, res){
 					dnaSeq: req.body.dnaSeq,
 					slug: req.body.dnaName
 		});
-		dbUser.save(function(err){
-			res.redirect('/account/' + dbUser.slug);
+		dbUser.save(function(err, dnaName, count){
+//			if (err){
+//				res.render('add', {err: err});
+//			}
+//			else{
+				res.redirect('/account/' + dbUser.slug);				
+//			}
 		});
 	});
 });
